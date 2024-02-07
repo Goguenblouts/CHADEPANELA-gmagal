@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Convite - Chá de Panela</title>
+  <style>
+    body {
+      font-family: 'Times New Roman', sans-serif;
+      background-color: #EFF0EB;
+      text-align: center;
+    }
+
+    #convite {
+      max-width: 85%;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #475A6B;
+      margin: 10px;
+    }
+
+    .casal {
+      color: #475A6B;
+      font-family: 'Pictorial Signature', sans-serif;
+      font-size: 60px;
+      margin: 10px;
+    }
+
+    img{
+        width: 100%;
+    }
+
+    p {
+      color: #475A6B;
+    }
+
+    #icones { 
+        font-size: 90%;
+    }
+
+    .mapa{
+        width: 100%;
+        height: 50%;
+        border-radius: 10px;
+        }
+
+    .end{
+        font-size: 100%;
+    }
+
+    #confirmarPresenca {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #88ABCB;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #nomeInput {
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      border-radius: 50px;
+      opacity: 50%;
+    }
+
+    #imagens img {
+      width: 40%;
+      margin: 0 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="convite">
+    <h1>CHÁ DE PANELA</h1>
+    <img src="https://github.com/Goguenblouts/CHADEPANELA/blob/main/IMG-ALL.png?raw=true" alt="Data-horario">
+    <p>Um passo importante em nossas vidas que gostariamos de compartilhar com voce!</p>
+    
+    <div id="imagens">
+      <img src="https://github.com/Goguenblouts/CHADEPANELA/blob/main/casal-img.png?raw=true" alt="aliegab">
+    </div>
+    
+
+    <div id="icones">
+        <p><i class="fas fa-gift"></i> O presente fica a sua escolha! Ou, se preferir, aceitamos Pix: 053.622.391-20</p> <!-- Ícone de presente -->
+        <p><i class="fas fa-map-marker-alt"></i> Local do Evento</p> <!-- Ícone de localização -->
+        <iframe class="mapa" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3825.58903905223!2d-49.41319272485496!3d-16.496334084246786!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTbCsDI5JzQ2LjgiUyA0OcKwMjQnMzguMiJX!5e0!3m2!1spt-BR!2sbr!4v1706231106164!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <p class="end">Endereço: Alameda Beira Lago - Chácara 21 - Residencial Lago Azul - Goianira/GO</p>
+    
+    </div>
+    
+
+    <p>Confirme sua presença abaixo:</p>
+    <input type="text" id="nomeInput" placeholder="Seu Nome">
+
+    <div>
+      <label>Voce poderá comparecer?</label>
+      <label for="comparecerSim"><input type="checkbox" id="comparecerSim" value="sim"> Sim!</label>
+      <label for="comparecerNao"><input type="checkbox" id="comparecerNao" value="nao"> Não!</label>
+    </div>
+
+    <a href="#" id="confirmarPresenca">Enviar</a>
+  </div>
+
+  <script>
+    document.getElementById('confirmarPresenca').addEventListener('click', function() {
+      const nome = document.getElementById('nomeInput').value;
+      const comparecerSim = document.getElementById('comparecerSim');
+      const comparecerNao = document.getElementById('comparecerNao');
+
+      if (nome) {
+        let mensagem = `Nome: ${nome}\n`;
+
+        if (comparecerSim.checked && !comparecerNao.checked) {
+          mensagem += "Sim, ficarei Feliz em comparecer!";
+        } else if (!comparecerSim.checked && comparecerNao.checked) {
+          mensagem += "Infelizmente, não poderei comparecer.";
+        } else {
+          alert('Por favor, selecione apenas uma opção.');
+          return; // Não continua o processamento se mais de uma opção estiver selecionada
+        }
+
+        const confirmacao = confirm(mensagem);
+
+        if (confirmacao) {
+          const numeroWhatsapp = '+5562985462790';
+          const mensagemWhatsapp = encodeURIComponent(`\n${mensagem}`);
+          window.location.href = `https://api.whatsapp.com/send?phone=${numeroWhatsapp}&text=${mensagemWhatsapp}`;
+        }
+      } else {
+        alert('Por favor, preencha todas as informações.');
+      }
+    });
+  </script>
+  
+  
+</body>
+</html>
