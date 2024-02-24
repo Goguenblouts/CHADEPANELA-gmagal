@@ -75,7 +75,7 @@
                         ctx.drawImage(uploadedImage, 0, 0);
 
                         const logo = new Image();
-                        logo.src = 'logo.png'; // Substitua 'logo.png' pelo caminho da sua imagem de logo
+                        logo.src = 'https://github.com/Goguenblouts/CHADEPANELA-gmagal/blob/main/logo%20lidersolar.png?raw=true'; // Substitua 'logo.png' pelo caminho da sua imagem de logo
                         logo.onload = function() {
                             if (logoPosition === 'top') {
                                 ctx.drawImage(logo, 0, 0); // Logo no topo
@@ -86,11 +86,7 @@
                             const finalImage = new Image();
                             finalImage.src = canvas.toDataURL('image/jpeg');
 
-                            const originalImage = new Image();
-                            originalImage.src = e.target.result;
-
                             resultContainer.appendChild(finalImage);
-                            previewImages.appendChild(originalImage);
                             previewImages.appendChild(finalImage);
                         };
                     };
