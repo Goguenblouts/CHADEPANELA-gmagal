@@ -111,12 +111,21 @@
                             finalImage.src = canvas.toDataURL('image/jpeg');
 
                             resultContainer.appendChild(finalImage);
+
+                            // Exibir a imagem original
+                            const originalImage = new Image();
+                            originalImage.src = e.target.result;
+                            previewImages.appendChild(originalImage);
+
+                            // Exibir a imagem com o logo
                             previewImages.appendChild(finalImage);
                         };
                     };
                 };
 
                 reader.readAsDataURL(inputImage.files[0]);
+            } else {
+                alert('Selecione uma imagem antes de adicionar o logo.');
             }
         });
     </script>
